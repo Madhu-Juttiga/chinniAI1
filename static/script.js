@@ -85,7 +85,7 @@ async function sendMessage() {
             aiResponse = predefinedResponses[userMessage];
         } else {
             try {
-                const response = await fetch("https://chinniai1.onrender.com/api/chat", {
+                const response = await fetch("https://chinniai1.onrender.com", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ prompt: userMessage }),

@@ -36,28 +36,28 @@ async function sendMessage() {
         // Predefined responses for specific queries
         const predefinedResponses = {
             "who developed chinni ai": `
-                Name: Madhu Venkata Satish Juttiga <br>
-                College: Aditya RJY <br>
-                Email: madhujuttiga1924@gmail.com <br>
-                Google Devop ID: g.dev/madhu6969
+                <strong>Name:</strong> Madhu Venkata Satish Juttiga <br>
+                <strong>College:</strong> Aditya RJY <br>
+                <strong>Email:</strong> madhujuttiga1924@gmail.com <br>
+                <strong>Google Devop ID:</strong> g.dev/madhu6969
             `,
             "who created chinni ai": `
-                Name: Madhu Venkata Satish Juttiga <br>
-                College: Aditya RJY <br>
-                Email: madhujuttiga1924@gmail.com <br>
-                Google Devop ID: g.dev/madhu6969
+                <strong>Name:</strong> Madhu Venkata Satish Juttiga <br>
+                <strong>College:</strong> Aditya RJY <br>
+                <strong>Email:</strong> madhujuttiga1924@gmail.com <br>
+                <strong>Google Devop ID:</strong> g.dev/madhu6969
             `,
             "who invented chinni ai": `
-                Name: Madhu Venkata Satish Juttiga <br>
-                College: Aditya RJY <br>
-                Email: madhujuttiga1924@gmail.com <br>
-                Google Devop ID: g.dev/madhu6969
+                <strong>Name:</strong> Madhu Venkata Satish Juttiga <br>
+                <strong>College:</strong> Aditya RJY <br>
+                <strong>Email:</strong> madhujuttiga1924@gmail.com <br>
+                <strong>Google Devop ID:</strong> g.dev/madhu6969
             `,
             "creator of chinni ai": `
-                Name: Madhu Venkata Satish Juttiga <br>
-                College: Aditya RJY <br>
-                Email: madhujuttiga1924@gmail.com <br>
-                Google Devop ID: g.dev/madhu6969
+                <strong>Name:</strong> Madhu Venkata Satish Juttiga <br>
+                <strong>College:</strong> Aditya RJY <br>
+                <strong>Email:</strong> madhujuttiga1924@gmail.com <br>
+                <strong>Google Devop ID:</strong> g.dev/madhu6969
             `,
             "who are you": `
                 Hi, I am Chinni AI! I am an exclusive chat model developed by Madhu Juttiga. 
@@ -85,7 +85,7 @@ async function sendMessage() {
             aiResponse = predefinedResponses[userMessage];
         } else {
             try {
-                const response = await fetch("https://chinniai1.onrender.com/generate", {
+                const response = await fetch("http://127.0.0.1:5001/generate", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ prompt: userMessage }),
@@ -153,11 +153,26 @@ document.getElementById("promptInput").addEventListener("keydown", (event) => {
     }
 });
 
-// Welcome Popup
 document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("welcome-popup");
     const closeBtn = document.getElementById("close-popup");
 
+    // Show the popup when the page loads
     popup.classList.add("show");
-    closeBtn.addEventListener("click", () => popup.classList.remove("show"));
+
+    // Close the popup when the close button is clicked
+    closeBtn.addEventListener("click", () => {
+        popup.classList.remove("show");
+
+        // Wait for the animation to complete before hiding the popup
+        setTimeout(() => {
+            popup.style.display = "none";
+        }, 300); // Match this duration with the CSS transition duration
+    });
+});
+
+// Adjust UI elements on window resize
+window.addEventListener("resize", () => {
+    const chatContainer = document.getElementById("chatContainer");
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 });

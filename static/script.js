@@ -85,7 +85,7 @@ async function sendMessage() {
             aiResponse = predefinedResponses[userMessage];
         } else {
             try {
-                const response = await fetch("http://127.0.0.1:5001/generate", {
+                const response = await fetch("https://chinniai1.onrender.com/generate", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ prompt: userMessage }),
